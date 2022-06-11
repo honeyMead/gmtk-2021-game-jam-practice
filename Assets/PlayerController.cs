@@ -1,75 +1,79 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed;
     public float speed;
     public float jumpSpeed;
 
-    private Rigidbody rigid;
-    private bool isOnGround = false;
+    private CharacterController characterController;
+    private Vector3 moveDirection = Vector3.zero;
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
-    }
-
-    void FixedUpdate()
-    {
+        characterController = GetComponent<CharacterController>();
         // TODO restrict movement in 3rd dimension
-        float moveHorizontal = 0;
-        float moveVertical = 0;
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveHorizontal = -1;
-
-            var speedInRightDirection = Vector3.Project(rigid.velocity, transform.right).magnitude;
-            if (speedInRightDirection > maxSpeed)
-            {
-                moveHorizontal = 0;
-            }
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            moveHorizontal = 1;
-
-            var speedInLeftDirection = Vector3.Project(rigid.velocity, -transform.right).magnitude;
-            if (speedInLeftDirection > maxSpeed)
-            {
-                moveHorizontal = 0;
-            }
-        }
-        if (isOnGround && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))
-        {
-            isOnGround = false;
-            moveVertical = jumpSpeed;
-        }
-
-        // TODO implement faster turning around and stopping when no button is pressed
-        var movement = new Vector3(moveHorizontal * speed, 0, 0);
-        rigid.AddForce(movement);
-
-        var jumpMove = new Vector3(0, moveVertical, 0);
-        rigid.AddForce(jumpMove, ForceMode.Impulse);
+        // TODO prevent rotation
     }
 
-    void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        foreach (var contact in collision.contacts)
-        {
-            var collidesWithGround = contact.otherCollider.gameObject.CompareTag("ground");
+        Move();
+        Jump();
+        SubstractGravity();
+        ApplyMoves();
+    }
 
-            if (collidesWithGround)
+    private void Move()
+    {
+        var moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow);
+        var moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow);
+
+        if (moveRight || moveLeft)
+        {
+            if (characterController.isGrounded)
             {
-                var collidesOnBottom = Vector3.Dot(contact.normal, Vector3.up) > 0.5;
-                if (collidesOnBottom)
+                //anim.SetTrigger("IsWalking");
+                if (moveRight)
                 {
-                    isOnGround = true;
-                    return;
+                    moveDirection = transform.right;
                 }
+                else if (moveLeft)
+                {
+                    moveDirection = -transform.right;
+                }
+                moveDirection *= speed;
             }
         }
+        else
+        {
+            moveDirection = new Vector3(0f, moveDirection.y, 0f);
+            //anim.SetTrigger("IsStanding");
+        }
+    }
+
+    private void Jump()
+    {
+        if (characterController.isGrounded)
+        {
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
+        //else
+        //{
+        //    anim.SetTrigger("IsStanding");
+        //}
+    }
+
+    private void SubstractGravity()
+    {
+        moveDirection.y -= 20.0f * Time.deltaTime;
+    }
+
+    private void ApplyMoves()
+    {
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 }
