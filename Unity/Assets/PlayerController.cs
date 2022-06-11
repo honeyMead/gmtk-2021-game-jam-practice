@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
+    private Transform playerModel;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        playerModel = transform.Find("PlayerModel");
         // TODO restrict movement in 3rd dimension
         // TODO prevent rotation
     }
@@ -37,10 +39,12 @@ public class PlayerController : MonoBehaviour
                 if (moveRight)
                 {
                     moveDirection = transform.right;
+                    playerModel.rotation = Quaternion.Euler(0, 0, 0);
                 }
                 else if (moveLeft)
                 {
                     moveDirection = -transform.right;
+                    playerModel.rotation = Quaternion.Euler(0, 180, 0);
                 }
                 moveDirection *= speed;
             }
