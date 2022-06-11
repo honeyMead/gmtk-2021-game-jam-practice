@@ -9,6 +9,8 @@ The game will be made with Unity.
 
 A platformer with puzzle mechanics in a nature setting.
 
+![First screenshot](./screenshot.png "First screenshot")
+
 ## Assets
 
 3D models from https://www.kenney.nl/assets/nature-kit
