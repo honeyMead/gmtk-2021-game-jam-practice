@@ -13,5 +13,5 @@ A platformer with puzzle mechanics in a nature setting.
 
 ## Assets
 
-3D models: https://www.kenney.nl/assets/nature-kit
+3D models: https://www.kenney.nl/assets/nature-kit  
 Background: https://www.kenney.nl/assets/background-elements
