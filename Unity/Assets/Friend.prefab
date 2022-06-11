@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5040232999032124403}
   m_Layer: 0
   m_Name: Friend
-  m_TagString: Untagged
+  m_TagString: friend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friend
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a537ceb961b414548b3507696100956f, type: 3}
+      propertyPath: m_TagString
+      value: friend
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a537ceb961b414548b3507696100956f, type: 3}
 --- !u!4 &4789640086480282622 stripped
@@ -74,3 +78,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a537ceb961b414548b3507696100956f, type: 3}
   m_PrefabInstance: {fileID: 5040232998857704469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5274815657451501892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a537ceb961b414548b3507696100956f, type: 3}
+  m_PrefabInstance: {fileID: 5040232998857704469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &8676668766078827019
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274815657451501892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.42
+  m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &8043055863275701817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274815657451501892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5225cc8df959a2c44863318e6035ccc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

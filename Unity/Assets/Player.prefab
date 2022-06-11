@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.5
-  jumpSpeed: 5
+  jumpSpeed: 6
 --- !u!143 &2057530766004066548
 CharacterController:
   m_ObjectHideFlags: 0

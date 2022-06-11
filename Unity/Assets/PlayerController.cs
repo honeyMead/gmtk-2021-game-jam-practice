@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
         playerModel = transform.Find("PlayerModel");
         // TODO restrict movement in 3rd dimension
         // TODO prevent rotation
+        // TODO allow moving when in air
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void SubstractGravity()
     {
-        moveDirection.y -= 20.0f * Time.deltaTime;
+        moveDirection.y += Physics.gravity.y * Time.deltaTime;
     }
 
     private void ApplyMoves()
