@@ -13,26 +13,21 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Transform playerModel;
     private List<FriendController> friends;
+    private Animator anim;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerModel = transform.Find("PlayerModel");
         friends = new List<FriendController>();
-        // TODO restrict movement in 3rd dimension
-        // TODO prevent rotation
-        // TODO allow moving when in air
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
         Move();
         Jump();
-        //var hadAction = PerformAction();
-        //if (!hadAction)
-        //{
         SubstractGravity();
-        //}
         ApplyMoves();
         DieWhenTooLow();
     }
@@ -85,32 +80,11 @@ public class PlayerController : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
         }
-        //else
-        //{
-        //    anim.SetTrigger("IsStanding");
-        //}
+        else
+        {
+            //anim.SetTrigger("IsStanding");
+        }
     }
-
-    ///// <returns>If gravity should be ignored currently.</returns>
-    //private bool PerformAction()
-    //{
-    //    if (Input.GetKey(KeyCode.E)
-    //        || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
-    //    {
-    //        if (friends.Count == 1)
-    //        {
-    //            var headOfFriend = friends[0].Head.position;
-    //            var distanceToFriend = Vector3.Distance(transform.position, headOfFriend);
-
-    //            if (distanceToFriend > 0.2f) // TODO check if is jumping?
-    //            {
-    //                moveDirection = 2f * speed * (headOfFriend - transform.position);
-    //                return true; // TODO false if other falls (player is on his head so he would fall too)
-    //            }
-    //        }
-    //    }
-    //    return false;
-    //}
 
     private void SubstractGravity()
     {

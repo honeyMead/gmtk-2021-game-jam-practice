@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class FriendController : MonoBehaviour
@@ -37,21 +36,8 @@ public class FriendController : MonoBehaviour
             if (distanceToPlayer > distanceToKeep)
             {
                 var speed = 0.3f;
-
-                //var rotationTowardsPlayer = Quaternion
-                //    .Slerp(transform.rotation, Quaternion
-                //        .LookRotation(player.transform.position - transform.position),
-                //    Time.deltaTime); // TODO fix rotation & faster
-
-                //var positionNearPlayer = Vector3.MoveTowards(transform.position, player.position, speed);
-                //transform.position = positionNearPlayer;
-
-                // TODO move with force
                 var direction = (player.transform.position - transform.position).normalized * speed;
                 rigid.AddForce(direction, ForceMode.VelocityChange);
-
-                //transform.SetPositionAndRotation(positionNearPlayer, rotationTowardsPlayer);
-                // TODO try to not move too deep into other objects/ground
             }
         }
     }

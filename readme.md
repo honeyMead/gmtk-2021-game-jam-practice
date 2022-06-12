@@ -7,7 +7,7 @@ The game will be made with Unity.
 
 ## Still in progress
 
-* Music
+* ~~Music~~
 * Animations
 * 2nd level
 * ~~Winning screen~~
