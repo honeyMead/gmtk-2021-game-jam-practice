@@ -2,7 +2,13 @@ fileFormatVersion: 2
 guid: ce8a6278ad19cdd4f9bfcef763d8c779
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4219266326801906582
+    second: Body|BodyAction
+  - first:
+      74: 3726195723755326752
+    second: Body|Movement
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -88,7 +94,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.003
+    globalScale: 0.3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
