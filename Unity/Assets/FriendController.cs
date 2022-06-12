@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class FriendController : MonoBehaviour
 {
     private Transform player = null;
     public Transform Head { get; private set; } = null;
-    public BoxCollider HeadCollider { get; private set; } = null;
+
+    private Rigidbody rigid;
     private PlayerController playerController = null;
     private bool isConnectedToPlayer = false;
 
@@ -12,33 +14,45 @@ public class FriendController : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         playerController = player.GetComponent<PlayerController>();
-        Head = transform.parent.Find("Head");
-        HeadCollider = Head.GetComponent<BoxCollider>();
+        Head = transform.Find("Head");
+        rigid = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
+        FollowPlayer();
+        DieWhenTooLow();
+    }
+
+    private void FollowPlayer()
+    {
         var doesPlayerAction = Input.GetKey(KeyCode.E)
-            || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl);
+                    || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl);
 
         if (isConnectedToPlayer && !doesPlayerAction)
         {
-            var distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
-            var distanceToKeep = 0.71f;
+            var distanceToPlayer = Vector3.Distance(player.position, transform.position);
+            var distanceToKeep = 0.8f;
 
             if (distanceToPlayer > distanceToKeep)
             {
-                HeadCollider.enabled = false;
-                var speed = 0.1f;
+                Debug.Log("too far away " + distanceToPlayer);
+                var speed = 0.3f;
 
-                transform.parent.rotation = Quaternion
-                    .Slerp(transform.parent.rotation, Quaternion
-                        .LookRotation(player.transform.position - transform.parent.position),
-                    Time.deltaTime); // TODO fix rotation & faster
+                //var rotationTowardsPlayer = Quaternion
+                //    .Slerp(transform.rotation, Quaternion
+                //        .LookRotation(player.transform.position - transform.position),
+                //    Time.deltaTime); // TODO fix rotation & faster
 
-                transform.parent.position = Vector3.MoveTowards(transform.parent.position, player.position, speed);
+                //var positionNearPlayer = Vector3.MoveTowards(transform.position, player.position, speed);
+                //transform.position = positionNearPlayer;
+
+                // TODO move with force
+                var direction = (player.transform.position - transform.position).normalized * speed;
+                rigid.AddForce(direction, ForceMode.VelocityChange);
+
+                //transform.SetPositionAndRotation(positionNearPlayer, rotationTowardsPlayer);
                 // TODO try to not move too deep into other objects/ground
-                // TODO gravity
             }
         }
     }
@@ -51,6 +65,14 @@ public class FriendController : MonoBehaviour
         {
             isConnectedToPlayer = true;
             playerController.Join(this);
+        }
+    }
+
+    private void DieWhenTooLow()
+    {
+        if (transform.position.y < -3f)
+        {
+            Destroy(gameObject);
         }
     }
 }

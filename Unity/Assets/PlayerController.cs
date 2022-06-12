@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
             SubstractGravity();
         }
         ApplyMoves();
+        DieWhenTooLow();
     }
 
     public void Die()
@@ -102,13 +103,8 @@ public class PlayerController : MonoBehaviour
 
                 if (distanceToFriend > 0.2f) // TODO check if is jumping?
                 {
-                    friends[0].HeadCollider.enabled = false;
                     moveDirection = 2f * speed * (headOfFriend - transform.position);
                     return true; // TODO false if other falls (player is on his head so he would fall too)
-                }
-                else
-                {
-                    friends[0].HeadCollider.enabled = true;
                 }
             }
         }
@@ -126,5 +122,13 @@ public class PlayerController : MonoBehaviour
     private void ApplyMoves()
     {
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void DieWhenTooLow()
+    {
+        if (transform.position.y < -3f)
+        {
+            Die();
+        }
     }
 }
