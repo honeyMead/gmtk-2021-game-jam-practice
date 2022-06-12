@@ -10,7 +10,7 @@ The game will be made with Unity.
 * Music
 * Animations
 * 2nd level
-* Winning screen
+* ~~Winning screen~~
 * Publishing the game
 
 ## The game
@@ -27,8 +27,10 @@ It uses Unity 2021.3.4f1.
 
 ## Assets
 
-3D models: https://www.kenney.nl/assets/nature-kit  
-Background: https://www.kenney.nl/assets/background-elements
+* 3D models: https://www.kenney.nl/assets/nature-kit
+* Background: https://www.kenney.nl/assets/background-elements
+* Player and friend: made in [Blender](https://www.blender.org/) by me
+* Music made in [BeepBox](https://www.beepbox.co/) by me
 
 ## Lessons learned
 

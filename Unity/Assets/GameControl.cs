@@ -4,6 +4,26 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     private Transform messageBox;
+    private static GameObject permanentAudio = null;
+
+    void Awake()
+    {
+        var audios = GameObject.FindGameObjectsWithTag("audio");
+
+        foreach (var audio in audios)
+        {
+            if (permanentAudio == null)
+            {
+                permanentAudio = audio;
+                DontDestroyOnLoad(permanentAudio);
+                return;
+            }
+            else if (audio != permanentAudio)
+            {
+                Destroy(audio);
+            }
+        }
+    }
 
     void Start()
     {
