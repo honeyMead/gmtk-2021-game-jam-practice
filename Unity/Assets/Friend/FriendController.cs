@@ -72,6 +72,7 @@ public class FriendController : MonoBehaviour
         if (transform.position.y < -3f)
         {
             Destroy(gameObject);
+            playerController.Die();
         }
     }
 }

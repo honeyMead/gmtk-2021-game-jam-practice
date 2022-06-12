@@ -1,11 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
+    public GameControl gameControl;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,8 +11,11 @@ public class Exit : MonoBehaviour
 
         if (isPlayer)
         {
-            // TODO load next level or show winning screen
-            Debug.Log("Exit reached!");
+            var isLastScene = SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCount - 1;
+            if (isLastScene)
+            {
+                gameControl.ShowWinMessage();
+            }
         }
     }
 }

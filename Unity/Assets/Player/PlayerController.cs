@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpSpeed;
+    public GameControl gameControl;
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         //var hadAction = PerformAction();
         //if (!hadAction)
         //{
-            SubstractGravity();
+        SubstractGravity();
         //}
         ApplyMoves();
         DieWhenTooLow();
