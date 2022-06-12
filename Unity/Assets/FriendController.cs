@@ -36,7 +36,6 @@ public class FriendController : MonoBehaviour
 
             if (distanceToPlayer > distanceToKeep)
             {
-                Debug.Log("too far away " + distanceToPlayer);
                 var speed = 0.3f;
 
                 //var rotationTowardsPlayer = Quaternion
