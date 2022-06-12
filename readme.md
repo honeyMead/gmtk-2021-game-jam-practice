@@ -1,17 +1,13 @@
-# GMTK 2021 Game Jam Practice
+# Tumble Boyos
+
+Platformer game made as practice in about 48 h with Unity.
+
+## GMTK 2021 Game Jam Practice
 
 To develop a creative and enjoyable **game in 48 hours** is the goal in the [Game Maker's Toolkit's Game Jam](https://itch.io/jam/gmtk-jam-2022).
 
 This year I want to participate, so I am practicing with last year's theme: **"Joined Together"**.  
 The game will be made with Unity.
-
-## Still in progress
-
-* ~~Music~~
-* Animations
-* 2nd level
-* ~~Winning screen~~
-* Publishing the game
 
 ## The game
 
@@ -43,3 +39,8 @@ That is because you need to consider what is possible to implement with your cur
 1. Carefully consider if you need a Character Controller, Rigidbody or none of both to implement movement.
 1. On the first day focus on creating a valid concept and a working prototype. No nice-to-have code or graphics.
 1. 48 hours pass fast when you take long breaks...
+
+### Unfinished
+
+* Animations
+* 2nd level
