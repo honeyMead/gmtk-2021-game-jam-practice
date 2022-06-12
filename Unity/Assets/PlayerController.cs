@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
-        var hadAction = PerformAction();
-        if (!hadAction)
-        {
+        //var hadAction = PerformAction();
+        //if (!hadAction)
+        //{
             SubstractGravity();
-        }
+        //}
         ApplyMoves();
         DieWhenTooLow();
     }
@@ -90,26 +90,26 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
-    /// <returns>If gravity should be ignored currently.</returns>
-    private bool PerformAction()
-    {
-        if (Input.GetKey(KeyCode.E)
-            || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
-        {
-            if (friends.Count == 1)
-            {
-                var headOfFriend = friends[0].Head.position;
-                var distanceToFriend = Vector3.Distance(transform.position, headOfFriend);
+    ///// <returns>If gravity should be ignored currently.</returns>
+    //private bool PerformAction()
+    //{
+    //    if (Input.GetKey(KeyCode.E)
+    //        || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
+    //    {
+    //        if (friends.Count == 1)
+    //        {
+    //            var headOfFriend = friends[0].Head.position;
+    //            var distanceToFriend = Vector3.Distance(transform.position, headOfFriend);
 
-                if (distanceToFriend > 0.2f) // TODO check if is jumping?
-                {
-                    moveDirection = 2f * speed * (headOfFriend - transform.position);
-                    return true; // TODO false if other falls (player is on his head so he would fall too)
-                }
-            }
-        }
-        return false;
-    }
+    //            if (distanceToFriend > 0.2f) // TODO check if is jumping?
+    //            {
+    //                moveDirection = 2f * speed * (headOfFriend - transform.position);
+    //                return true; // TODO false if other falls (player is on his head so he would fall too)
+    //            }
+    //        }
+    //    }
+    //    return false;
+    //}
 
     private void SubstractGravity()
     {
