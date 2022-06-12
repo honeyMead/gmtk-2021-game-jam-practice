@@ -11,13 +11,13 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private Transform playerModel;
-    private List<Transform> friends;
+    private List<FriendController> friends;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerModel = transform.Find("PlayerModel");
-        friends = new List<Transform>();
+        friends = new List<FriendController>();
         // TODO restrict movement in 3rd dimension
         // TODO prevent rotation
         // TODO allow moving when in air
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Join(Transform friend)
+    public void Join(FriendController friend)
     {
         friends.Add(friend);
     }
@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+    /// <returns>If gravity should be ignored currently.</returns>
     private bool PerformAction()
     {
         if (Input.GetKey(KeyCode.E)
@@ -96,17 +97,18 @@ public class PlayerController : MonoBehaviour
         {
             if (friends.Count == 1)
             {
-                var headOfFriend = friends[0].transform.position; // TODO on top of fren
+                var headOfFriend = friends[0].Head.position;
                 var distanceToFriend = Vector3.Distance(transform.position, headOfFriend);
 
-                if (distanceToFriend > 0.2f)
+                if (distanceToFriend > 0.2f) // TODO check if is jumping?
                 {
-                    moveDirection = Vector3.MoveTowards(transform.position, headOfFriend, 1f);
-                    return true; // TODO false if both fall
+                    friends[0].HeadCollider.enabled = false;
+                    moveDirection = 2f * speed * (headOfFriend - transform.position);
+                    return true; // TODO false if other falls (player is on his head so he would fall too)
                 }
                 else
                 {
-                    Jump();
+                    friends[0].HeadCollider.enabled = true;
                 }
             }
         }
