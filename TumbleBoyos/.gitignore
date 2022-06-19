@@ -6,6 +6,8 @@
 # 3D files
 
 *.fbx
+!Friend.fbx
+!Player.fbx
 
 /[Ll]ibrary/
 /[Tt]emp/

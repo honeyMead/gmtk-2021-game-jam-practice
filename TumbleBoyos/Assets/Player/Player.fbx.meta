@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: 3726195723755326752
     second: Body|Movement
+  - first:
+      74: 2064677337663209811
+    second: Body|Moving
   externalObjects: {}
   materials:
     materialImportMode: 2

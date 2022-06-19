@@ -29,11 +29,13 @@ public class GameControl : MonoBehaviour
     {
         messageBox = transform.GetChild(0).Find("MessageBox");
         messageBox.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void ShowWinMessage()
     {
         messageBox.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void RestartGame()
