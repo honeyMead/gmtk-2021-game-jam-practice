@@ -11,10 +11,16 @@ public class Exit : MonoBehaviour
 
         if (isPlayer)
         {
-            var isLastScene = SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCount - 1;
-            if (isLastScene)
+            var activeScene = SceneManager.GetActiveScene().buildIndex;
+            var lastScene = SceneManager.sceneCountInBuildSettings - 1;
+
+            if (activeScene == lastScene)
             {
                 gameControl.ShowWinMessage();
+            }
+            else
+            {
+                SceneManager.LoadScene(activeScene + 1);
             }
         }
     }
