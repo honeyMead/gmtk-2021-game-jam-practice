@@ -39,8 +39,3 @@ That is because you need to consider what is possible to implement with your cur
 1. Carefully consider if you need a Character Controller, Rigidbody or none of both to implement movement.
 1. On the first day focus on creating a valid concept and a working prototype. No nice-to-have code or graphics.
 1. 48 hours pass fast when you take long breaks...
-
-### Unfinished
-
-* Animations
-* 2nd level
