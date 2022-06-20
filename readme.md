@@ -1,6 +1,6 @@
 # Tumble Boyos
 
-Platformer game made as practice in about 48 h with Unity.
+Platformer game made as practice in about 48 h with Unity. Play it on itch.io: <https://honeymead.itch.io/tumble-boyos>.
 
 ## GMTK 2021 Game Jam Practice
 
